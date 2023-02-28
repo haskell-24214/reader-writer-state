@@ -1,7 +1,7 @@
 module TestTier0 (main) where
 
 import Test.HUnit
-import Share (testData, testTree)
+import Share (testData, testTree, tryRunTest)
 
 import Control.Monad.Reader (runReader)
 import Control.Monad.Writer (runWriter)
@@ -40,11 +40,11 @@ test_sumAndTraceInOrder = TestCase $ assertEqual "sum and trace in-order" expect
         expected = (45, [1..9])
 
 main :: IO ()
-main = runTestTT (TestList
+main = tryRunTest $ TestList
   [ TestLabel "test_formatUserName1" test_formatUserName1
   , TestLabel "test_formatUserName2" test_formatUserName2
   , TestLabel "test_formatHost" test_formatHost
   , TestLabel "test_formatCurrentDir" test_formatCurrentDir
   , TestLabel "test_formatPrompt" test_formatPrompt
   , TestLabel "test_sumAndTraceInOrder" test_sumAndTraceInOrder
-  ]) >> return ()
+  ]

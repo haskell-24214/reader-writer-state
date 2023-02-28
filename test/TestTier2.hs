@@ -1,7 +1,7 @@
 module TestTier2 (main) where
 
 import Test.HUnit
-import Share (testTree)
+import Share (testTree, tryRunTest)
 
 import Control.Monad.Writer (Sum (..), runWriter)
 
@@ -13,6 +13,6 @@ test_collectAndSumInOrder = TestCase $ assertEqual "collect and sum in-order" ex
         expected = ([1..9], Sum 45)
 
 main :: IO ()
-main = runTestTT (TestList
+main = tryRunTest $ TestList
   [ TestLabel "test_collectAndSumInOrder" test_collectAndSumInOrder
-  ]) >> return ()
+  ]

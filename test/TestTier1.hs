@@ -1,7 +1,7 @@
 module TestTier1 (main) where
 
 import Test.HUnit
-import Share (testData)
+import Share (testData, tryRunTest)
 
 import Control.Monad.Reader (runReader)
 
@@ -24,8 +24,8 @@ test_suCdCd = TestCase $ assertEqual "su && cd && cd" expected result
         expected = "root@localhost:~/Documents/Haskell$"
 
 main :: IO ()
-main = runTestTT (TestList
+main = tryRunTest $ TestList
   [ TestLabel "test_cd" test_cd
   , TestLabel "test_su" test_su
   , TestLabel "test_suCdCd" test_suCdCd
-  ]) >> return ()
+  ]
